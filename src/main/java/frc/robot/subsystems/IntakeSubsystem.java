@@ -5,11 +5,19 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
-  public IntakeSubsystem() {}
+      WPI_VictorSPX intakeMotor;
+  public IntakeSubsystem() {
+    this.intakeMotor = new WPI_VictorSPX(30);
 
+  }
+
+  public void turnONIntake(double speed){
+    intakeMotor.set(speed);
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

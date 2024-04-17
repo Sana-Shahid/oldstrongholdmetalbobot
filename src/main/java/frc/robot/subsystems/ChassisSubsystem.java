@@ -23,9 +23,11 @@ public class ChassisSubsystem extends SubsystemBase {
 
 
   public ChassisSubsystem() {
-  leftMotor = new WPI_VictorSPX(10);
+    this.leftMotor = new WPI_VictorSPX(10);
 
-  rightMotor = new WPI_VictorSPX(11);
+    this.rightMotor = new WPI_VictorSPX(11);
+
+    drive = new DifferentialDrive(null, null);
   }
 
   
@@ -33,4 +35,6 @@ public class ChassisSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-}
+  public void move (double speed, double turn){
+    drive.arcadeDrive(speed, turn);
+}}

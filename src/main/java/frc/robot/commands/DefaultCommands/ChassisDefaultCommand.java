@@ -5,11 +5,13 @@
 package frc.robot.commands.DefaultCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Robot;
 
 public class ChassisDefaultCommand extends Command {
   /** Creates a new ChassisDefaultCommand. */
   public ChassisDefaultCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.CHASSIS_SUBSYSTEM);
   }
 
   // Called when the command is initially scheduled.
@@ -18,7 +20,9 @@ public class ChassisDefaultCommand extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    Robot.CHASSIS_SUBSYSTEM.move(Robot.oi.getSpeed(), Robot.oi.getTurn());
+  }
 
   // Called once the command ends or is interrupted.
   @Override
@@ -30,3 +34,4 @@ public class ChassisDefaultCommand extends Command {
     return false;
   }
 }
+

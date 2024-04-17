@@ -5,11 +5,13 @@
 package frc.robot.commands.DefaultCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Robot;
 
 public class IntakeDefaultCommand extends Command {
   /** Creates a new IntakeDefaultCommand. */
   public IntakeDefaultCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.INTAKE_SUBSYSTEM);
   }
 
   // Called when the command is initially scheduled.
@@ -18,7 +20,16 @@ public class IntakeDefaultCommand extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if(Robot.oi.intake()){
+      Robot.INTAKE_SUBSYSTEM.turnONIntake(0.4);
+
+    }
+    else if (Robot.oi.intake() == false){
+      Robot.INTAKE_SUBSYSTEM.turnONIntake(0);
+    }
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override

@@ -5,11 +5,13 @@
 package frc.robot.commands.DefaultCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Robot;
 
 public class ShooterDefaultCommand extends Command {
   /** Creates a new ShooterDefaultCommand. */
   public ShooterDefaultCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.SHOOTER_SUBSYSTEM);
   }
 
   // Called when the command is initially scheduled.
@@ -18,7 +20,14 @@ public class ShooterDefaultCommand extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if (Robot.oi.shooter() > 0.3){
+      Robot.SHOOTER_SUBSYSTEM.setShooterSpeed(0.4);
+    }
+    else if(Robot.oi.shooter() < 0.05){
+      Robot.SHOOTER_SUBSYSTEM.stopShooter(0);
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
